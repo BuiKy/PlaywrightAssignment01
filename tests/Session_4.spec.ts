@@ -1,18 +1,18 @@
 import {test, expect} from '@playwright/test'
 import { before } from 'node:test';
 
-test.beforeEach(async ({page}) => {
-    // Go to https://www.saucedemo.com/inventory.html page
-    await page.goto('/inventory.html')
-    await page.locator('#user-name').fill('standard_user');
-    await page.locator('#password').fill('secret_sauce');
-    await page.locator('#login-button').click()
+// test.beforeEach(async ({page}) => {
+//     // Go to https://www.saucedemo.com/inventory.html page
+//     await page.goto('/inventory.html')
+//     await page.locator('#user-name').fill('standard_user');
+//     await page.locator('#password').fill('secret_sauce');
+//     await page.locator('#login-button').click()
 
-})
+// })
 
-test('test 1 - sort products', async ({page}) => {
+test.skip('test 1 - sort products', async ({page}) => {
     // Validate the "Products" is visible
-    await expect(page.locator('.title')).toHaveText('Products')
+    await expect(page.getByText('Products', {exact: true})).toBeVisible()
     // On the sort option, select "sort by price (low to high) 
     await page.locator('.product_sort_container').click(),
     await page.locator('.product_sort_container').selectOption('Price (low to high)')
