@@ -9,7 +9,7 @@ export class InventoryPage{
     constructor(page: Page){
         this.page = page;
         this.titleProduct = '//span[@data-test="title"]';
-        this.productName1st = page.locator('//div[contains(@class,"inventory_item_name")]').nth(1);
+        this.productName1st = page.locator(`//div[@class="inventory_item"][1]//div[contains(@class,'inventory_item_name')]`);
         this.addToCartBtn = page.locator(`//div[@class="inventory_item"][1]//button`);
         this.shoppingCartBtn = page.locator('.shopping_cart_link');
     }

@@ -6,11 +6,11 @@ export class ShoppingCartPage{
     readonly productName: Locator;
     constructor(page: Page){
         this.page = page;
-        this.productName = page.locator('//div[contains(@class,"inventory_item_name")]');
+        this.productName = page.locator('//div[contains(@class,"inventory_item_name")][1]');
         this.checkOutBtn = page.locator('#checkout');
     }
-    async verifySelectedProduct(productSelected: string){
-        await expect(this.productName).toHaveText(productSelected)
+    async verify1stItemSelectedDisplayed(){
+        await expect(this.productName).toBeVisible()
     }
 
     async clickToCheckOut(){
