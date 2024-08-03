@@ -34,10 +34,14 @@ test('TC002 - Verify user can order product successfully', async ({page}) =>{
         login.clickLoginButton();
     })
 
+    await page.waitForTimeout(3000)
     const enventoryPage = new InventoryPage(page)   
     await test.step('Validate the "Products" is visible', async () =>{
         enventoryPage.verifyTitleName('Products')
     })
+
+    await page.waitForTimeout(3000)
+
     await test.step('step 4 - On the first item click Add to cart then go to shopping cart', async () =>{
         enventoryPage.clickAddToCard();  
         enventoryPage.clickToShoppingCart();          
