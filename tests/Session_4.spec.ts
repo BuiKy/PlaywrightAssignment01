@@ -1,11 +1,10 @@
 import {test, expect} from '@playwright/test'
-import { before } from 'node:test';
 
 test.beforeEach(async ({page}) => {
     // Go to https://www.saucedemo.com/inventory.html page
-    await page.goto('/inventory.html')
-    await page.locator('#user-name').fill('standard_user');
-    await page.locator('#password').fill('secret_sauce');
+    await page.goto(process.env.BASE_URL!)
+    await page.locator('#user-name').fill(process.env.USER_NAME!);
+    await page.locator('#password').fill(process.env.PASSWORD!);
     await page.locator('#login-button').click()
 
 })
@@ -28,9 +27,11 @@ test('test 2 - Add to cart', async ({page}) => {
     // Validate the "Products" is visible
     await expect(page.getByText('Products', {exact: true})).toBeVisible()
     // On the first item click "Add to cart"
-    const productName = await page.locator('//div[contains(@class,"inventory_item_name")]').nth(1).textContent();
-    await page.getByRole('button', { name: 'Add to cart' }).nth(1).click();
+    const productName = await page.locator('//button[@data-test="add-to-cart-sauce-labs-backpack"]/parent::div/preceding-sibling::div//div[contains(@class,"inventory_item_name")]').textContent();
+    await page.locator('//button[@data-test="add-to-cart-sauce-labs-backpack"]').click();
     // The button text changed into "Remove"  and there is number '1' on the cart
+    await expect(page.locator('//button[@data-test="remove-sauce-labs-backpack"]')).toContainText('Remove');  
+    await expect(page.locator('[data-test="shopping-cart-badge"]')).toContainText('1');
 
     // Click on the cart
     await page.locator('.shopping_cart_container').click();

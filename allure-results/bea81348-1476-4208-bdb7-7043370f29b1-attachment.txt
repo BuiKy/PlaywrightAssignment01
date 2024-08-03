@@ -1,0 +1,4 @@
+validate this message: async getTextValidateMess() {
+    console.log(this.validateTxt.innerText());
+    // return await this.validateTxt.innerText()
+  }

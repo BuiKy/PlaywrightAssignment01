@@ -1,0 +1,2 @@
+listPrice.length: 6
+arraySortedOrNot(listPrice, listPrice.length) true

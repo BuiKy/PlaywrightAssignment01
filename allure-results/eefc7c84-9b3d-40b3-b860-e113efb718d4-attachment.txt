@@ -1,0 +1,3 @@
+========async getTextValidateMess(errMessage) {
+    await (0, _test.expect)(this.page.locator(this.errorMessage)).toHaveText(errMessage);
+  }

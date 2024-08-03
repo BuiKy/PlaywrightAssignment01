@@ -1,0 +1,4 @@
+validate this message: async getTextValidateMess() {
+    const actual = this.validateLoginTxt.innerText();
+    return actual;
+  }

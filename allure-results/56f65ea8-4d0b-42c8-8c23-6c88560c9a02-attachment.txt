@@ -1,0 +1,3 @@
+========async getTextValidateMess() {
+    return await this.page.locator(this.errorMessage).innerText();
+  }

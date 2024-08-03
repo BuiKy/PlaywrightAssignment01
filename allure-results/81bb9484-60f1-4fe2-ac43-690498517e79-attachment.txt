@@ -1,0 +1,3 @@
+validate this message: async getTextValidateMess() {
+    return await this.validateLoginTxt.innerText();
+  }

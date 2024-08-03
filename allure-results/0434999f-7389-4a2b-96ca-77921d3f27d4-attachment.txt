@@ -1,0 +1,2 @@
+====[object Promise]
+you selected a product: Sauce Labs Bike Light
