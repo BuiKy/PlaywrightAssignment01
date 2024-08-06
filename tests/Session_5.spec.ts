@@ -16,22 +16,21 @@ test.beforeEach(async ({page}) => {
 
 test('TC001 - Verify error message appear when login with invalid user', async ({page}) =>{    
     const loginPage = new LoginPage(page)    
-    await test.step('Input username field with:  locked_out_user. and Input password field with: secret_sauce.', async () => {
+        await test.step('Input username field with:  locked_out_user. and Input password field with: secret_sauce.', async () => {
         await loginPage.inputUserNameAndPassword('locked_out_user','secret_sauce');
         await loginPage.clickLoginButton()
       })
 
-      await test.step('Verify that the error message is displayed.', async () => {
+        await test.step('Verify that the error message is displayed.', async () => {
         const errMess = "Epic sadface: Sorry, this user has been locked out.";
         await loginPage.verifyErrMessage(errMess);
       })  
 })
 
 test('TC002 - Verify user can order product successfully', async ({page}) =>{
-    const loginPage = new LoginPage(page);    
-    await test.step('step 2-3 - login with valid username and password', async()=>{
-        // login.inputUserNameAndPassword(process.env.USER_NAME!, process.env.PASSWORD!)
-        await loginPage.inputUserNameAndPassword('standard_user','secret_sauce')
+        const loginPage = new LoginPage(page);    
+        await test.step('step 2-3 - login with valid username and password', async()=>{
+        await loginPage.inputUserNameAndPassword(process.env.USER_NAME!, process.env.PASSWORD!)
         await loginPage.clickLoginButton();
     })
 
