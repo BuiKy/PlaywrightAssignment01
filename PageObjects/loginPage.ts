@@ -1,19 +1,17 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { assert } from "console";
 
 export class LoginPage {
     readonly page: Page;
     readonly userName: Locator;
     readonly password: Locator;
     readonly loginBtn: Locator;
-    readonly validateLoginTxt: Locator;
-    readonly errorMessage: string;
+    readonly errorMessage: Locator;
     constructor(page: Page){
         this.page = page;
         this.userName = page.locator('#user-name');
         this.password = page.locator('#password');
         this.loginBtn = page.locator('#login-button')
-        this.errorMessage = '//h3[@data-test="error"]';
+        this.errorMessage = page.locator('[data-test="error"]');
     }
 
     //input username and password
@@ -29,6 +27,6 @@ export class LoginPage {
 
     //verify element to have text
     async verifyErrMessage(errMessage: string){
-        await expect(this.page.locator(this.errorMessage)).toHaveText(errMessage)
+        await expect(this.errorMessage).toHaveText(errMessage)
     }
 }
